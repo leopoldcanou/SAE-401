@@ -1,11 +1,16 @@
-function Button() {
-  return (
-    <>
-      <button className="bg-primary-yellow font-roboto text-primary-black h-12 w-64 rounded-3xl px-10 py-2">
-        Commencer!
-      </button>
-    </>
-  );
+import PropTypes from "prop-types";
+
+function Button(props) {
+  let primary = ["bg-primary-yellow", "text-primary-blue"];
+
+  let { children, variant = primary } = props;
+
+  return <button className={variant}>{children}</button>;
 }
+
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.string, // Add variant prop validation
+};
 
 export default Button;
