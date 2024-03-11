@@ -1,0 +1,33 @@
+{
+  "movies": [
+    {
+      "title": "FNAF",
+      "img": "/img/FNAF.jpg"
+    },
+    {
+      "title": "RACE",
+      "img": "/img/RACE.jpg"
+    },{
+      "title": "FNAF",
+      "img": "/img/FNAF.jpg"
+    },
+    {
+      "title": "RACE",
+      "img": "/img/RACE.jpg"
+    },{
+      "title": "FNAF",
+      "img": "/img/FNAF.jpg"
+    },
+    {
+      "title": "RACE",
+      "img": "/img/RACE.jpg"
+    },{
+      "title": "FNAF",
+      "img": "/img/FNAF.jpg"
+    },
+    {
+      "title": "RACE",
+      "img": "/img/RACE.jpg"
+    }
+  ]
+}
