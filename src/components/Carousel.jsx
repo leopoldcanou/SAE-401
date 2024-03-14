@@ -36,10 +36,10 @@ export default function Carousel() {
     };
 
     return (
-        <div className="relative">
-            <ScrollContainer className="flex gap-4 px-4 overflow-x-auto scroll-container flex-nowrap" ref={containerRef}>
+        <div className="relative bg-primary-background">
+            <ScrollContainer className="flex gap-4 px-4 overflow-x-auto scroll-container flex-nowrap cursor-grab" ref={containerRef}>
                 {data.movies.map((movie, index) => (
-                    <Card key={index} img={movie.img} name={movie.title} />
+                    <Card key={index} img={movie.img} name={movie.title} href={movie.href} />
                 ))}
             </ScrollContainer>
             <SlideButton
