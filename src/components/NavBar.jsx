@@ -1,5 +1,6 @@
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
+import Logo from '../assets/anytime.png';
 
 const navigationLinks = [
     { name: 'Accueil', href: '/' },
@@ -15,8 +16,11 @@ const Navbar = () => {
                 <>
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16">
-                            <div className="flex-shrink-0">
-                                <span className="text-lg font-semibold text-white">Logo</span>
+                            <div>
+                                <a href="" >
+                                    <img src={Logo} alt="Anytime Logo" className="align-middle w-36 aspect-auto" />
+                                </a>
+
                             </div>
                             <div className="hidden md:block">
                                 <div className="flex space-x-4">
