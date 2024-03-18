@@ -1,3 +1,21 @@
 .DS_store
 
 /frontend/node_modules
+
+
+
+
+
+
+# Cache, session files and logs (Symfony3)
+backend/var/cache/*
+backend/var/logs/*
+/var/sessions/*
+backend/!var/cache/.gitkeep
+backend/!var/logs/.gitkeep
+backend/!var/sessions/.gitkeep
+
+# Logs (Symfony4)
+backend//var/log/*
+backend/!var/log/.gitkeep
+

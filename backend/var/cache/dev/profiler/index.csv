@@ -154,3 +154,4 @@ d840a5,192.168.65.1,GET,http://localhost:8787/admin?crudAction=index&crudControl
 76feb6,192.168.65.1,GET,http://localhost:8787/admin?crudAction=edit&crudControllerFqcn=App%5CController%5CAdmin%5CUserCrudController&entityId=1,1710512690,,200,request
 1c46a5,172.18.0.1,GET,http://localhost:8080/,1710804673,,404,request
 90dcbc,172.18.0.1,GET,http://localhost:8080/,1710804692,,404,request
+71cc20,192.168.65.1,GET,http://localhost:8080/,1710805504,,404,request
