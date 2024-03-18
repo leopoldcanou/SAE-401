@@ -1,12 +1,14 @@
 # SAE Starter
+
 Ce repository a pour but de fournir une base pour un environnement Docker local pour la SAE4.DWeb-DI.01.
 
 ## Installation
-Déplacer le code de votre application frontend dans un dossier `frontend`.
-Faites de même avec votre application Symfony dans un dossier `backend`.
 
-Remplacer le fichier `frontend/vite.config.js` par celui-ci:
-```
+Déplacez le code de votre application frontend dans un dossier `frontend`. Faites de même avec votre application Symfony dans un dossier `backend`.
+
+Remplacez le fichier `frontend/vite.config.js` par celui-ci :
+
+```javascript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -27,7 +29,8 @@ export default defineConfig({
 ```
 
 Il faut ensuite exécuter ces commandes :
-```
+
+```bash
 # Installe les dépendances pour le frontend
 docker-compose run --rm frontend npm install
 
@@ -39,7 +42,8 @@ docker-compose run --rm backend php bin/console doctrine:migrations:migrate --no
 ```
 
 ## Lancer l'environnement
-```
+
+```bash
 docker-compose up -d
 ```
 
