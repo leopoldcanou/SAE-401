@@ -28,7 +28,7 @@ const Navbar = () => {
                                         <a
                                             key={link.name}
                                             href={link.href}
-                                            className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700"
+                                            className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md "
                                         >
                                             {link.name}
                                         </a>
@@ -36,7 +36,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <div className="flex -mr-2 md:hidden">
-                                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                     <span className="sr-only">Open main menu</span>
                                     {open ? (
                                         <XIcon className="block w-6 h-6" aria-hidden="true" />
@@ -54,7 +54,7 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="block px-3 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white"
+                                    className="block px-3 py-2 text-base font-medium text-right text-gray-300 rounded-md focus:ring-white hover:text-white"
                                 >
                                     {link.name}
                                 </a>

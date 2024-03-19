@@ -13,8 +13,9 @@ const SlideButton = ({ onClick, direction, isHidden }) => {
 
     return (
         <button
-            className={`absolute ${direction === 'left' ? 'left-0 ml-6' : 'right-0 mr-6'} px-3 aspect-square transform  -translate-y-1/2 bg-black bg-opacity-5 rounded-md top-1/2 backdrop-blur-3xl ${isHidden ? 'hidden' : ''}`}
+            className={`absolute ${direction === 'left' ? 'left-0 ml-6' : 'right-0 mr-6'} hidden sm:block px-3 aspect-square transform  -translate-y-1/2 bg-black bg-opacity-5 rounded-md top-1/2 backdrop-blur-3xl`}
             onClick={onClick}
+            hidden={isHidden}
         >
             {icon}
         </button>
