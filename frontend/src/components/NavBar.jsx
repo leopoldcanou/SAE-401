@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import Logo from '../assets/anytime.png';
-
+import Logo from '/img/anytime.png';
+ 
 const navigationLinks = [
     { name: 'Accueil', href: '/' },
     { name: 'Services', href: '/services' },

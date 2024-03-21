@@ -155,3 +155,9 @@ d840a5,192.168.65.1,GET,http://localhost:8787/admin?crudAction=index&crudControl
 1c46a5,172.18.0.1,GET,http://localhost:8080/,1710804673,,404,request
 90dcbc,172.18.0.1,GET,http://localhost:8080/,1710804692,,404,request
 71cc20,192.168.65.1,GET,http://localhost:8080/,1710805504,,404,request
+ce3e9d,172.18.0.1,GET,http://localhost:8080/,1711028472,,404,request
+87e9cd,172.18.0.1,GET,http://localhost:8080/admin,1711028500,,302,request
+106b4b,172.18.0.1,GET,http://localhost:8080/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CMovieCrudController,1711028512,,200,request
+726e34,172.18.0.1,GET,http://localhost:8080/admin,1711032865,,302,request
+7e0453,172.18.0.1,GET,http://localhost:8080/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CMovieCrudController,1711032878,,200,request
+c68911,172.18.0.1,GET,http://localhost:8080/admin?crudAction=index&crudControllerFqcn=App%5CController%5CAdmin%5CMovieCrudController,1711042444,,200,request

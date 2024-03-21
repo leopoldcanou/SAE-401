@@ -9,14 +9,16 @@ const button = cva(base, {
       alert: "",
     },
     size: {
-      small: "px-4 text-sm h-8 w-32",
-      medium: "px-10 text-base h-12 w-64 py-2",
+      small: "px-4 text-sm h-8 ",
+      medium: "px-10 text-base h-12  py-2",
     },
     rounded: {
       full: "rounded-full",
 
     },
     width: {
+      32: "w-32",
+      64: "w-64",
       "10/12": "w-10/12",
     },
   },
