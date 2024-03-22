@@ -11,7 +11,7 @@ export default function Header() {
                 <h2 className="px-6 mb-4 text-xl font-bold text-center">Watch the latest movies without a subscription!</h2>
                 <p className="px-6 text-sm text-center">Welcome to one of the Nordic countries&apos; broadest purchase and rental options. We offer everything from the latest blockbusters to narrower quality films and series. Here you only pay for what you want to see. No subscription, no monthly fee.</p>
                 <Button rounded={"full"} size={"medium"} width={"10/12"}>Get started!</Button>
-                <ul className="flex flex-col w-full gap-4 p-8 w">
+                <ul className="flex flex-col items-start gap-4 px-4 mx-auto my-8 w-max">
                     <li className='flex flex-row gap-2'>
                     <svg className='w-6 h-6 min-w-6 fill-[#73AF55]'  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m6.707 11.293-1.414 1.414 4.707 4.707 8.707-8.707-1.414-1.414-7.293 7.293z"></path></svg><p className="text-base font-bold font-roboto">Pay only for what you see</p>
                 </li>
