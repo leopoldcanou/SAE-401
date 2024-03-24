@@ -3,10 +3,9 @@ import { MenuIcon, XIcon } from '@heroicons/react/solid';
 import Logo from '/img/anytime.png';
  
 const navigationLinks = [
-    { name: 'Accueil', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'À propos', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Movies', href: '/movies' },
+    { name: 'New', href: '/new' },
+
 ];
 
 const Navbar = () => {
@@ -17,7 +16,7 @@ const Navbar = () => {
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16">
                             <div>
-                                <a href="" >
+                                <a href="/" >
                                     <img src={Logo} alt="Anytime Logo" className="align-middle w-36 aspect-auto" />
                                 </a>
 

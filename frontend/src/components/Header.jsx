@@ -4,12 +4,12 @@ export default function Header() {
     return (
         <div className="relative ">
             <div className="relative inset-0 ">
-                <div className="h-96 w-screen bg-[url('/img/HEADER_BG.jpg')] bg-cover bg-top"></div>
+                <div className="h-96 w-full bg-[url('/img/HEADER_BG.jpg')] bg-cover bg-top"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-background via-transparent"></div>
             </div>
-            <div className="relative inset-0 flex flex-col items-center justify-center text-white h-[24rem] -top-24">
-                <h2 className="px-6 mb-4 text-xl font-bold text-center">Watch the latest movies without a subscription!</h2>
-                <p className="px-6 text-sm text-center">Welcome to one of the Nordic countries&apos; broadest purchase and rental options. We offer everything from the latest blockbusters to narrower quality films and series. Here you only pay for what you want to see. No subscription, no monthly fee.</p>
+            <div className="relative inset-0 flex flex-col items-center justify-center text-white h-[24rem] -top-16">
+                <h2 className="px-6 mb-4 text-xl font-bold text-center font-roboto">Watch the latest movies without a subscription!</h2>
+                <p className="px-6 text-xs leading-[1.1rem] text-center font-roboto">Welcome to one of the Nordic countries&apos; broadest purchase and rental options. We offer everything from the latest blockbusters to narrower quality films and series. Here you only pay for what you want to see. No subscription, no monthly fee.</p>
                 <Button rounded={"full"} size={"medium"} width={"10/12"}>Get started!</Button>
                 <ul className="flex flex-col items-start gap-4 px-4 mx-auto my-8 w-max">
                     <li className='flex flex-row gap-2'>
