@@ -23,6 +23,7 @@
       <parameter key="DoctrineMigrationsBundle">Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="EasyAdminBundle">EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle</parameter>
+      <parameter key="NelmioCorsBundle">Nelmio\CorsBundle\NelmioCorsBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -64,6 +65,10 @@
       <parameter key="EasyAdminBundle" type="collection">
         <parameter key="path">/app/backend/vendor/easycorp/easyadmin-bundle/src</parameter>
         <parameter key="namespace">EasyCorp\Bundle\EasyAdminBundle</parameter>
+      </parameter>
+      <parameter key="NelmioCorsBundle" type="collection">
+        <parameter key="path">/app/backend/vendor/nelmio/cors-bundle</parameter>
+        <parameter key="namespace">Nelmio\CorsBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -242,6 +247,40 @@
       <parameter>main</parameter>
     </parameter>
     <parameter key="security.logout_uris" type="collection"/>
+    <parameter key="nelmio_cors.map" type="collection">
+      <parameter key="^/" type="collection">
+        <parameter key="skip_same_as_origin">true</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="nelmio_cors.defaults" type="collection">
+      <parameter key="allow_origin" type="collection">
+        <parameter>%env(CORS_ALLOW_ORIGIN)%</parameter>
+      </parameter>
+      <parameter key="allow_credentials">false</parameter>
+      <parameter key="allow_headers" type="collection">
+        <parameter>content-type</parameter>
+        <parameter>authorization</parameter>
+      </parameter>
+      <parameter key="expose_headers" type="collection">
+        <parameter>Link</parameter>
+      </parameter>
+      <parameter key="allow_methods" type="collection">
+        <parameter>GET</parameter>
+        <parameter>OPTIONS</parameter>
+        <parameter>POST</parameter>
+        <parameter>PUT</parameter>
+        <parameter>PATCH</parameter>
+        <parameter>DELETE</parameter>
+      </parameter>
+      <parameter key="max_age">3600</parameter>
+      <parameter key="hosts" type="collection"/>
+      <parameter key="origin_regex">true</parameter>
+      <parameter key="forced_allow_origin_value">null</parameter>
+      <parameter key="skip_same_as_origin">true</parameter>
+    </parameter>
+    <parameter key="nelmio_cors.cors_listener.class">Nelmio\CorsBundle\EventListener\CorsListener</parameter>
+    <parameter key="nelmio_cors.options_resolver.class">Nelmio\CorsBundle\Options\Resolver</parameter>
+    <parameter key="nelmio_cors.options_provider.config.class">Nelmio\CorsBundle\Options\ConfigProvider</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -1848,6 +1887,7 @@
           <argument>/app/backend/vendor/doctrine/doctrine-bundle/translations</argument>
           <argument>/app/backend/vendor/doctrine/doctrine-migrations-bundle/translations</argument>
           <argument>/app/backend/vendor/symfony/security-bundle/translations</argument>
+          <argument>/app/backend/vendor/nelmio/cors-bundle/translations</argument>
           <argument>/app/backend/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
@@ -1865,6 +1905,7 @@
             <argument>vendor/doctrine/doctrine-bundle/translations</argument>
             <argument>vendor/doctrine/doctrine-migrations-bundle/translations</argument>
             <argument>vendor/symfony/security-bundle/translations</argument>
+            <argument>vendor/nelmio/cors-bundle/translations</argument>
             <argument>translations</argument>
           </argument>
         </argument>
@@ -2252,6 +2293,30 @@
           <argument>onKernelView</argument>
         </argument>
         <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="nelmio_cors.cors_listener"/>
+          <argument>onKernelRequest</argument>
+        </argument>
+        <argument>250</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="nelmio_cors.cors_listener"/>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="nelmio_cors.cacheable_response_vary_listener"/>
+          <argument>onResponse</argument>
+        </argument>
+        <argument>-10</argument>
       </call>
       <call method="addListener">
         <argument>kernel.controller_arguments</argument>
@@ -6238,6 +6303,27 @@
       <tag name="assets.package" package="easyadmin.assets.package"/>
       <argument type="service" id="request_stack"/>
     </service>
+    <service id="nelmio_cors.cors_listener" class="Nelmio\CorsBundle\EventListener\CorsListener">
+      <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="250"/>
+      <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" priority="0"/>
+      <tag name="container.hot_path"/>
+      <tag name="container.hot_path"/>
+      <argument type="service" id="nelmio_cors.options_resolver"/>
+    </service>
+    <service id="nelmio_cors.options_resolver" class="Nelmio\CorsBundle\Options\Resolver">
+      <argument type="collection">
+        <argument type="service" id="nelmio_cors.options_provider.config"/>
+      </argument>
+    </service>
+    <service id="nelmio_cors.options_provider.config" class="Nelmio\CorsBundle\Options\ConfigProvider">
+      <tag name="nelmio_cors.options_provider" priority="-1"/>
+      <argument>%nelmio_cors.map%</argument>
+      <argument>%nelmio_cors.defaults%</argument>
+    </service>
+    <service id="nelmio_cors.cacheable_response_vary_listener" class="Nelmio\CorsBundle\EventListener\CacheableResponseVaryListener">
+      <tag name="kernel.event_listener" event="kernel.response" method="onResponse" priority="-10"/>
+      <tag name="container.hot_path"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\CategoryCrudController" class="App\Controller\Admin\CategoryCrudController" autowire="true" abstract="true"/>
@@ -7323,10 +7409,10 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\DashboardControllerRegistry">
       <argument>/app/backend/var/cache/dev</argument>
       <argument type="collection">
-        <argument key="App\Controller\Admin\DashboardController">f5fe5f8</argument>
+        <argument key="App\Controller\Admin\DashboardController">d305b71</argument>
       </argument>
       <argument type="collection">
-        <argument key="f5fe5f8">App\Controller\Admin\DashboardController</argument>
+        <argument key="d305b71">App\Controller\Admin\DashboardController</argument>
       </argument>
     </service>
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry">
@@ -7336,9 +7422,9 @@
         <argument key="App\Controller\Admin\UserCrudController">App\Entity\User</argument>
       </argument>
       <argument type="collection">
-        <argument key="App\Controller\Admin\CategoryCrudController">c04904e</argument>
-        <argument key="App\Controller\Admin\MovieCrudController">0ec5166</argument>
-        <argument key="App\Controller\Admin\UserCrudController">c540392</argument>
+        <argument key="App\Controller\Admin\CategoryCrudController">9d0236e</argument>
+        <argument key="App\Controller\Admin\MovieCrudController">dc79dff</argument>
+        <argument key="App\Controller\Admin\UserCrudController">cfa74f5</argument>
       </argument>
       <argument type="collection">
         <argument key="App\Entity\Category">App\Controller\Admin\CategoryCrudController</argument>
@@ -7346,9 +7432,9 @@
         <argument key="App\Entity\User">App\Controller\Admin\UserCrudController</argument>
       </argument>
       <argument type="collection">
-        <argument key="c04904e">App\Controller\Admin\CategoryCrudController</argument>
-        <argument key="0ec5166">App\Controller\Admin\MovieCrudController</argument>
-        <argument key="c540392">App\Controller\Admin\UserCrudController</argument>
+        <argument key="9d0236e">App\Controller\Admin\CategoryCrudController</argument>
+        <argument key="dc79dff">App\Controller\Admin\MovieCrudController</argument>
+        <argument key="cfa74f5">App\Controller\Admin\UserCrudController</argument>
       </argument>
     </service>
     <service id=".service_locator.O24_MAy" class="Symfony\Component\DependencyInjection\ServiceLocator">

@@ -213,6 +213,6 @@ class __TwigTemplate_8e2f9ee4349afd6e80d24275197ac3e4 extends Template
         </button>
     </form>
 {% endblock %}
-", "security/login.html.twig", "/var/www/html/templates/security/login.html.twig");
+", "security/login.html.twig", "/app/backend/templates/security/login.html.twig");
     }
 }

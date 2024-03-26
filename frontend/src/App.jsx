@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <Header />
       <WideCarousel />
-      <Carousel name="The top list"/>
+      <Carousel name="The top list" category="/category/new"/>
     </>
   );
 }

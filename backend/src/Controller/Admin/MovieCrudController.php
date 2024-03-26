@@ -20,6 +20,13 @@ class MovieCrudController extends AbstractCrudController
     {
         yield IdField::new('id')->hideOnForm();
         yield TextField::new('name');
+        yield TextEditorField::new('description');
+        yield TextField::new('duration');
+        yield TextField::new('year');
+        yield TextField::new('rating');
+        yield TextField::new('age');
+        yield TextField::new('img');
+        yield TextField::new('wideimg');
         yield AssociationField::new('category');
     }
 

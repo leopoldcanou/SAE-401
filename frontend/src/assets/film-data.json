@@ -2,7 +2,6 @@
   "movies": [
     {
       "title": "Five Nights at Freddy's",
-      "href": "/movies/five_nights_at_freddys",
       "description": "Can you survive five nights? A security guard starts working at Freddy Fazbear's Pizza. When he spends his first night on the job, he realizes that the night shift at Freddy's won't be so easy to get through.",
       "duration": "1 h 49 m",
       "year": "2023",
@@ -14,7 +13,6 @@
     },
     {
       "title": "Wonka",
-      "href": "/movies/wonka",
       "description": "Based on the extraordinary character from Donald and the Chocolate Factory, Roald Dahl's most iconic children's book and one of the best-selling children's books of all time, comes \"Wonka.\" The film tells the wonderful story of how the world's greatest inventor, magician and chocolatier became the beloved Willy Wonka we know today.",
       "duration": "1 h 52 m",
       "year": "2023",
@@ -26,7 +24,6 @@
     },
     {
       "title": "The Batman",
-      "href": "/movies/the_batman",
       "description": "For two years, Bruce Wayne has watched over the streets of Gotham City as Batman. When an assassin targets Gotham's elite in a series of sadistic murders, a trail of cryptic clues leads Batman into the underworld. The evidence leads closer and closer to his own family and the extent of the killer's plans becomes clear. Batman must forge new alliances and uncover the culprit to save Gotham City.",
       "duration": "2 h 56 m",
       "year": "2022",
@@ -38,7 +35,6 @@
     },
     {
       "title": "Joker",
-      "href": "/movies/joker",
       "description": "Arthur, a man met with cruelty and contempt by society. During the day he works as a clown and in the evenings he tries to break through as a stand-up comedian... but it feels like the laughs are always at his expense. He is completely out of sync with reality and his uncontrollable and inappropriate laughter, which only increases as he tries to control it, leads to more taunts and even violence.",
       "duration": "2 h 02 m",
       "year": "2019",
@@ -50,7 +46,6 @@
     },
     {
       "title": "American Psycho",
-      "href": "/movies/american_psycho",
       "description": "Patrick Bateman, a young man who works at his father's firm on Wall Street, hides a dark side from his friends and colleagues. On the outside, everything seems normal, but what no one knows is that Patrick secretly enjoys killing people for no reason whatsoever. The film is based on the novel by Bret Easton Ellis.",
       "duration": "1 h 41 m",
       "year": "2000",

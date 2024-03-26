@@ -1,5 +1,5 @@
 import { cva } from "class-variance-authority";
-const base = "font-roboto align-middle	";
+const base = "flex items-center justify-center font-roboto align-middle	";
 
 const button = cva(base, {
   variants: {
@@ -10,16 +10,11 @@ const button = cva(base, {
     },
     size: {
       small: "px-4 text-sm h-8 ",
-      medium: "px-10 text-base h-16 py-3",
+      medium: "px-10 text-base h-16 py-3 w-11/12 md:w-64  lg:py-6 h-12",
     },
     rounded: {
       full: "rounded-full",
 
-    },
-    width: {
-      32: "w-32",
-      64: "w-64",
-      "10/12": "w-11/12",
     },
   },
   compoundVariants: [],
@@ -34,12 +29,11 @@ export default function Button({
   intent,
   size,
   rounded,
-  width,
   ...props
 }) {
   return (
     <button
-      className={button({ intent, size, rounded, width, className })}
+      className={button({ intent, size, rounded, className })}
       {...props}
     />
   );
