@@ -256,7 +256,7 @@
       <parameter key="allow_origin" type="collection">
         <parameter>%env(CORS_ALLOW_ORIGIN)%</parameter>
       </parameter>
-      <parameter key="allow_credentials">false</parameter>
+      <parameter key="allow_credentials">true</parameter>
       <parameter key="allow_headers" type="collection">
         <parameter>content-type</parameter>
         <parameter>authorization</parameter>
@@ -5905,8 +5905,8 @@
       <call method="setOptions">
         <argument type="collection">
           <argument key="login_path">app_login</argument>
+          <argument key="default_target_path">app_login</argument>
           <argument key="always_use_default_target_path">false</argument>
-          <argument key="default_target_path">/</argument>
           <argument key="target_path_parameter">_target_path</argument>
           <argument key="use_referer">false</argument>
         </argument>

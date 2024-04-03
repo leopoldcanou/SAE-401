@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import SearchBar from "../components/SearchBar"; // Assurez-vous que le chemin est correct
-import { searchMovieByName } from '../lib/loaders'; // Assurez-vous que le chemin est correct
+import {  searchMovieByName } from '../lib/loaders'; // Assurez-vous que le chemin est correct
 import SearchMovie from '../components/SearchMovie'; // Assurez-vous que le chemin est correct
 import Footer from "../components/Footer";
 
 export default function Search() {
+     // Appelle la fonction `fetchUser` pour récupérer les informations de l'utilisateur
     const [movies, setMovies] = useState([]); // État pour stocker les films trouvés
 
     const handleSearch = async (searchTerm) => {
