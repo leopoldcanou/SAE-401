@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Card from "./Card";
 import ScrollContainer from "react-indiana-drag-scroll";
 import SlideButton from "./SlideButton";
+import { Link } from "react-router-dom";
 
 export default function Carousel({ name, category }) {
   const containerRef = useRef(null);
@@ -10,7 +11,7 @@ export default function Carousel({ name, category }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/category/1");
+        const response = await fetch(`http://localhost:8080/api/category/${category}`);
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -47,7 +48,7 @@ export default function Carousel({ name, category }) {
           {name}
         </h3>
         <div className="flex flex-row items-center">
-          <a className="flex flex-row" href={category}>
+          <Link className="flex flex-row" to={`/movies/${category}`}>
             <p className="text-sm font-roboto text-primary-white">Show all</p>
             <svg
               className="w-6 h-6 fill-primary-white"
@@ -56,7 +57,7 @@ export default function Carousel({ name, category }) {
             >
               <path d="m10 6-1.41 1.41 4.58 4.59-4.58 4.59 1.41 1.41 6-6z"></path>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="relative bg-primary-background">
@@ -69,7 +70,6 @@ export default function Carousel({ name, category }) {
               key={index}
               img={movie.img}
               name={movie.name}
-              // href equal movie name without spaces
                 href={`/movie/${movie.name.replace(/\s+/g, "-").toLowerCase()}`}
                 />
                 ))}

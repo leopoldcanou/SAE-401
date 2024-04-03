@@ -1,5 +1,8 @@
 import { cva } from "class-variance-authority";
+import { Link } from 'react-router-dom';
+
 const base = "flex-shrink-0 h-auto ";
+
 
 const card = cva(base, {
     variants: {
@@ -18,9 +21,9 @@ const card = cva(base, {
 export default function Card({ className, size, img, name, href }) {
     return (
         <div className={card({ size, className })}>
-            <a href={href}>
+            <Link to={href}>
                 <img className='block object-cover rounded-md' src={img} alt={name} />
-            </a>
+            </Link>
         </div>
     );
 }

@@ -1,11 +1,11 @@
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
 import Logo from '/img/anytime.png';
- 
+import { Link } from 'react-router-dom';
+
 const navigationLinks = [
     { name: 'Movies', href: '/movies' },
-    { name: 'New', href: '/new' },
-
+    { name: 'Search', href: '/search' },
 ];
 
 const Navbar = () => {
@@ -16,21 +16,20 @@ const Navbar = () => {
                     <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-16">
                             <div>
-                                <a href="/" >
+                                <Link to="/home">
                                     <img src={Logo} alt="Anytime Logo" className="align-middle w-36 aspect-auto" />
-                                </a>
-
+                                </Link>
                             </div>
                             <div className="hidden md:block">
                                 <div className="flex space-x-4">
                                     {navigationLinks.map((link) => (
-                                        <a
+                                        <Link
                                             key={link.name}
-                                            href={link.href}
+                                            to={link.href}
                                             className="px-3 py-2 text-sm font-medium text-gray-300 rounded-md "
                                         >
                                             {link.name}
-                                        </a>
+                                        </Link>
                                     ))}
                                 </div>
                             </div>
@@ -46,17 +45,16 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-
                     <Disclosure.Panel className="absolute inset-x-0 z-50 bg-primary-black bg-opacity-70 md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             {navigationLinks.map((link) => (
-                                <a
+                                <Link
                                     key={link.name}
-                                    href={link.href}
+                                    to={link.href}
                                     className="block px-3 py-2 text-base font-medium text-right text-gray-300 rounded-md focus:ring-white hover:text-white"
                                 >
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </Disclosure.Panel>

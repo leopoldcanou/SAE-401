@@ -16,6 +16,7 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'admin', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], null, null, null, false, false, null]],
         '/api' => [[['_route' => 'app_api', '_controller' => 'App\\Controller\\ApiController::index'], null, null, null, false, false, null]],
+        '/api/featured' => [[['_route' => 'app_api_featured', '_controller' => 'App\\Controller\\ApiController::readFeatured'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
@@ -43,6 +44,7 @@ return [
                 .'|/api/(?'
                     .'|movie/([^/]++)(*:224)'
                     .'|category/([^/]++)(*:249)'
+                    .'|search/([^/]++)(*:272)'
                 .')'
             .')/?$}sDu',
     ],
@@ -55,9 +57,10 @@ return [
         168 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         181 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        224 => [[['_route' => 'app_api_movie', '_controller' => 'App\\Controller\\ApiController::readMovie'], ['id'], null, null, false, true, null]],
-        249 => [
-            [['_route' => 'app_api_category', '_controller' => 'App\\Controller\\ApiController::readCategory'], ['id'], null, null, false, true, null],
+        224 => [[['_route' => 'app_api_movie', '_controller' => 'App\\Controller\\ApiController::readMovie'], ['name'], null, null, false, true, null]],
+        249 => [[['_route' => 'app_api_category', '_controller' => 'App\\Controller\\ApiController::readCategory'], ['name'], null, null, false, true, null]],
+        272 => [
+            [['_route' => 'api_search_movies', '_controller' => 'App\\Controller\\ApiController::searchMovies'], ['name'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use App\Entity\Category;
 use App\Entity\Movie;
 use App\Entity\User;
+use App\Entity\Featured;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -41,7 +42,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Html');
+            ->setTitle('Dashboard');
     }
 
     public function configureMenuItems(): iterable
@@ -50,6 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Category', 'fas fa-list', Category::class);
         yield MenuItem::linkToCrud('Movie', 'fas fa-list', Movie::class);
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Featured', 'fas fa-list', Featured::class);
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

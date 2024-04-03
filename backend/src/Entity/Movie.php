@@ -20,43 +20,47 @@ class Movie
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'movies')]
     private Collection $category;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $description = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $duration = null;
 
     #[ORM\Column(length: 4)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $year = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $rating = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $age = null;
 
     #[ORM\Column(length: 512)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $img = null;
 
     #[ORM\Column(length: 512)]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
     private ?string $wideimg = null;
+
+    #[ORM\OneToMany(targetEntity: Featured::class, mappedBy: 'movie')]
+    private Collection $featureds;
 
     public function __construct()
     {
         $this->category = new ArrayCollection();
+        $this->featureds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,5 +193,40 @@ class Movie
         $this->wideimg = $wideimg;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Featured>
+     */
+    public function getFeatureds(): Collection
+    {
+        return $this->featureds;
+    }
+
+    public function addFeatured(Featured $featured): static
+    {
+        if (!$this->featureds->contains($featured)) {
+            $this->featureds->add($featured);
+            $featured->setMovie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeatured(Featured $featured): static
+    {
+        if ($this->featureds->removeElement($featured)) {
+            // set the owning side to null (unless already changed)
+            if ($featured->getMovie() === $this) {
+                $featured->setMovie(null);
+            }
+        }
+
+        return $this;
+    }
+
+        public function __toString(): string
+    {
+        return $this->name;
     }
 }

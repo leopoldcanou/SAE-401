@@ -390,6 +390,14 @@
         <argument type="service" id=".service_locator.yTMp7CA.App\Controller\Admin\DashboardController"/>
       </call>
     </service>
+    <service id="App\Controller\Admin\FeaturedCrudController" class="App\Controller\Admin\FeaturedCrudController" public="true" autowire="true" autoconfigure="true">
+      <tag name="ea.crud_controller"/>
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.ZP92gqz.App\Controller\Admin\FeaturedCrudController"/>
+      </call>
+    </service>
     <service id="App\Controller\Admin\MovieCrudController" class="App\Controller\Admin\MovieCrudController" public="true" autowire="true" autoconfigure="true">
       <tag name="ea.crud_controller"/>
       <tag name="controller.service_arguments"/>
@@ -434,6 +442,10 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\FeaturedRepository" class="App\Repository\FeaturedRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\MovieRepository" class="App\Repository\MovieRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -472,7 +484,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.zXvdzy8"/>
+      <argument type="service" id=".service_locator.Fj4o.y."/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -2740,7 +2752,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.zXvdzy8"/>
+      <argument type="service" id=".service_locator.Fj4o.y."/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4813,7 +4825,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.3VccQKS"/>
+      <argument type="service" id=".service_locator.N2EIzgh"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -5456,7 +5468,15 @@
         </service>
       </argument>
     </service>
-    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap"/>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap">
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.28NqKnb"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
     <service id="security.context_listener" class="Symfony\Component\Security\Http\Firewall\ContextListener">
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
@@ -5967,6 +5987,14 @@
         <argument key="security.firewall.map.context.main" type="service_closure" id="security.firewall.map.context.main"/>
       </argument>
     </service>
+    <service id=".security.request_matcher.obhk0jm" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/admin</argument>
+    </service>
+    <service id=".security.request_matcher.28NqKnb" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.obhk0jm"/>
+      </argument>
+    </service>
     <service id="security.command.user_password_hash" class="Symfony\Component\PasswordHasher\Command\UserPasswordHashCommand">
       <tag name="console.command"/>
       <tag name="container.no_preload"/>
@@ -6332,6 +6360,10 @@
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\DashboardControllerInterface.0.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Admin\DashboardController" class="App\Controller\Admin\DashboardController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\FeaturedCrudController" class="App\Controller\Admin\FeaturedCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\FeaturedCrudController" class="App\Controller\Admin\FeaturedCrudController" autowire="true" abstract="true"/>
+    <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\FeaturedCrudController" class="App\Controller\Admin\FeaturedCrudController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Admin\FeaturedCrudController" class="App\Controller\Admin\FeaturedCrudController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Admin\MovieCrudController" class="App\Controller\Admin\MovieCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Admin\MovieCrudController" class="App\Controller\Admin\MovieCrudController" autowire="true" abstract="true"/>
     <service id=".instanceof.EasyCorp\Bundle\EasyAdminBundle\Contracts\Controller\CrudControllerInterface.0.App\Controller\Admin\MovieCrudController" class="App\Controller\Admin\MovieCrudController" autowire="true" abstract="true"/>
@@ -6353,6 +6385,8 @@
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CategoryRepository" class="App\Repository\CategoryRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\FeaturedRepository" class="App\Repository\FeaturedRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\FeaturedRepository" class="App\Repository\FeaturedRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MovieRepository" class="App\Repository\MovieRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\MovieRepository" class="App\Repository\MovieRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
@@ -6896,6 +6930,20 @@
         <argument key="serializer" type="service_closure" id="debug.serializer"/>
       </argument>
     </service>
+    <service id=".service_locator.R8cEqk3" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="featuredRepository" type="service_closure" id="App\Repository\FeaturedRepository"/>
+        <argument key="serializer" type="service_closure" id="debug.serializer"/>
+      </argument>
+    </service>
+    <service id=".service_locator.rvdmmlk" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="movieRepository" type="service_closure" id="App\Repository\MovieRepository"/>
+        <argument key="serializer" type="service_closure" id="debug.serializer"/>
+      </argument>
+    </service>
     <service id=".service_locator.V6D1oJY" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6909,7 +6957,7 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.zXvdzy8" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.Fj4o.y." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Admin\CategoryCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
@@ -6934,6 +6982,27 @@
         <argument key="App\Controller\Admin\CategoryCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\CategoryCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.t7nLwyX"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::batchDelete" type="service_closure" id=".service_locator.twrFs.m"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::createEditForm" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::createEditFormBuilder" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::createIndexQueryBuilder" type="service_closure" id=".service_locator.lng3o3t"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::createNewForm" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::createNewFormBuilder" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\MovieCrudController::autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\MovieCrudController::batchDelete" type="service_closure" id=".service_locator.twrFs.m"/>
         <argument key="App\Controller\Admin\MovieCrudController::configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
@@ -6977,7 +7046,9 @@
         <argument key="App\Controller\Admin\UserCrudController::renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\UserCrudController::updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ApiController::readCategory" type="service_closure" id=".service_locator..B4k9Wg"/>
+        <argument key="App\Controller\ApiController::readFeatured" type="service_closure" id=".service_locator.R8cEqk3"/>
         <argument key="App\Controller\ApiController::readMovie" type="service_closure" id=".service_locator.Wql8jrV"/>
+        <argument key="App\Controller\ApiController::searchMovies" type="service_closure" id=".service_locator.rvdmmlk"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.V6D1oJY"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -7006,6 +7077,27 @@
         <argument key="App\Controller\Admin\CategoryCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\CategoryCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\DashboardController:configureUserMenu" type="service_closure" id=".service_locator.t7nLwyX"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:batchDelete" type="service_closure" id=".service_locator.twrFs.m"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:configureAssets" type="service_closure" id=".service_locator.wvbCcwL"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:configureCrud" type="service_closure" id=".service_locator.Nb584vp"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:configureFilters" type="service_closure" id=".service_locator.kud45L1"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:configureResponseParameters" type="service_closure" id=".service_locator.vMUOjiq"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:createEditForm" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:createEditFormBuilder" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:createIndexQueryBuilder" type="service_closure" id=".service_locator.lng3o3t"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:createNewForm" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:createNewFormBuilder" type="service_closure" id=".service_locator.Lazlz4J"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:delete" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:deleteEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:detail" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:edit" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:index" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:new" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:persistEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
+        <argument key="App\Controller\Admin\FeaturedCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\Admin\MovieCrudController:autocomplete" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\MovieCrudController:batchDelete" type="service_closure" id=".service_locator.twrFs.m"/>
         <argument key="App\Controller\Admin\MovieCrudController:configureActions" type="service_closure" id=".service_locator.UrOEf8r"/>
@@ -7049,7 +7141,9 @@
         <argument key="App\Controller\Admin\UserCrudController:renderFilters" type="service_closure" id=".service_locator.t9B7cZ4"/>
         <argument key="App\Controller\Admin\UserCrudController:updateEntity" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\ApiController:readCategory" type="service_closure" id=".service_locator..B4k9Wg"/>
+        <argument key="App\Controller\ApiController:readFeatured" type="service_closure" id=".service_locator.R8cEqk3"/>
         <argument key="App\Controller\ApiController:readMovie" type="service_closure" id=".service_locator.Wql8jrV"/>
+        <argument key="App\Controller\ApiController:searchMovies" type="service_closure" id=".service_locator.rvdmmlk"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.V6D1oJY"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
@@ -7353,10 +7447,11 @@
         <argument key="doctrine.orm.listeners.pdo_session_handler_schema_listener" type="service_closure" id="doctrine.orm.listeners.pdo_session_handler_schema_listener"/>
       </argument>
     </service>
-    <service id=".service_locator.3VccQKS" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.N2EIzgh" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CategoryRepository" type="service_closure" id="App\Repository\CategoryRepository"/>
+        <argument key="App\Repository\FeaturedRepository" type="service_closure" id="App\Repository\FeaturedRepository"/>
         <argument key="App\Repository\MovieRepository" type="service_closure" id="App\Repository\MovieRepository"/>
         <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
@@ -7418,21 +7513,25 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry" class="EasyCorp\Bundle\EasyAdminBundle\Registry\CrudControllerRegistry">
       <argument type="collection">
         <argument key="App\Controller\Admin\CategoryCrudController">App\Entity\Category</argument>
+        <argument key="App\Controller\Admin\FeaturedCrudController">App\Entity\Featured</argument>
         <argument key="App\Controller\Admin\MovieCrudController">App\Entity\Movie</argument>
         <argument key="App\Controller\Admin\UserCrudController">App\Entity\User</argument>
       </argument>
       <argument type="collection">
         <argument key="App\Controller\Admin\CategoryCrudController">9d0236e</argument>
+        <argument key="App\Controller\Admin\FeaturedCrudController">86baf44</argument>
         <argument key="App\Controller\Admin\MovieCrudController">dc79dff</argument>
         <argument key="App\Controller\Admin\UserCrudController">cfa74f5</argument>
       </argument>
       <argument type="collection">
         <argument key="App\Entity\Category">App\Controller\Admin\CategoryCrudController</argument>
+        <argument key="App\Entity\Featured">App\Controller\Admin\FeaturedCrudController</argument>
         <argument key="App\Entity\Movie">App\Controller\Admin\MovieCrudController</argument>
         <argument key="App\Entity\User">App\Controller\Admin\UserCrudController</argument>
       </argument>
       <argument type="collection">
         <argument key="9d0236e">App\Controller\Admin\CategoryCrudController</argument>
+        <argument key="86baf44">App\Controller\Admin\FeaturedCrudController</argument>
         <argument key="dc79dff">App\Controller\Admin\MovieCrudController</argument>
         <argument key="cfa74f5">App\Controller\Admin\UserCrudController</argument>
       </argument>
@@ -7604,6 +7703,12 @@
       <argument>App\Controller\Admin\DashboardController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.yTMp7CA" method="withContext"/>
+    </service>
+    <service id=".service_locator.ZP92gqz.App\Controller\Admin\FeaturedCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\FeaturedCrudController"/>
+      <argument>App\Controller\Admin\FeaturedCrudController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ZP92gqz" method="withContext"/>
     </service>
     <service id=".service_locator.ZP92gqz.App\Controller\Admin\MovieCrudController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Admin\MovieCrudController"/>
@@ -7795,6 +7900,7 @@
           <argument>App\Kernel</argument>
           <argument>App\Controller\Admin\CategoryCrudController</argument>
           <argument>App\Controller\Admin\DashboardController</argument>
+          <argument>App\Controller\Admin\FeaturedCrudController</argument>
           <argument>App\Controller\Admin\MovieCrudController</argument>
           <argument>App\Controller\Admin\UserCrudController</argument>
           <argument>App\Controller\ApiController</argument>
@@ -8982,7 +9088,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.zXvdzy8"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.Fj4o.y."/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
@@ -9025,6 +9131,8 @@
     <service id=".service_locator.uoBNKjJ" alias=".service_locator.t7nLwyX"/>
     <service id=".service_locator.0.NW8Hd" alias=".service_locator.Wql8jrV"/>
     <service id=".service_locator.LFKdcYw" alias=".service_locator..B4k9Wg"/>
+    <service id=".service_locator.Nc2tZjo" alias=".service_locator.R8cEqk3"/>
+    <service id=".service_locator.wGxAt.5" alias=".service_locator.rvdmmlk"/>
     <service id=".service_locator.qnm_CJ1" alias=".service_locator.V6D1oJY"/>
     <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
     <service id=".service_locator.TG7RI.d" alias=".service_locator.ZP92gqz"/>

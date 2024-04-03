@@ -6,7 +6,7 @@ Déplacer le code de votre application frontend dans un dossier `frontend`.
 Faites de même avec votre application Symfony dans un dossier `backend`.
 
 Remplacer le fichier `frontend/vite.config.js` par celui-ci:
-```
+```javascript
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -27,7 +27,7 @@ export default defineConfig({
 ```
 
 Il faut ensuite exécuter ces commandes :
-```
+```bash
 # Installe les dépendances pour le frontend
 docker-compose run --rm frontend npm install
 
@@ -42,7 +42,7 @@ docker exec sae-backend php bin/console doctrine:migrations:migrate --no-interac
 ```
 
 ## Lancer l'environnement
-```
+```bash
 docker-compose up -d
 ```
 
