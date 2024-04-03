@@ -57,6 +57,9 @@ class Movie
     #[ORM\OneToMany(targetEntity: Featured::class, mappedBy: 'movie')]
     private Collection $featureds;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $video = null;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
@@ -229,4 +232,16 @@ class Movie
     {
         return $this->name;
     }
+
+        public function getVideo(): ?string
+        {
+            return $this->video;
+        }
+
+        public function setVideo(?string $video): static
+        {
+            $this->video = $video;
+
+            return $this;
+        }
 }
