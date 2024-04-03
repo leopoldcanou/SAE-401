@@ -1,5 +1,6 @@
 import Button from "./Button";
 import Carousel from "./Carousel";
+import { Link } from "react-router-dom";
 
 export default function Movie({ data }) {
   return (
@@ -15,6 +16,7 @@ export default function Movie({ data }) {
             <div className="absolute inset-0 bg-gradient-to-t from-primary-background via-transparent"></div>
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
+          <Link to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
             <button className="flex items-center justify-center w-20 h-20 bg-opacity-75 rounded-full backdrop-blur-lg">
               <svg
                 className="w-12 h-12 text-white fill-primary-white"
@@ -24,6 +26,7 @@ export default function Movie({ data }) {
                 <path d="m6.5 20.7-1.5-.8v-15.8l1.5-.9 13 7.9v1.7zm0.5-14.8v12.2l10.1-6.1z"></path>
               </svg>
             </button>
+            </Link>
           </div>
         </div>
         <div className="px-0 lg:px-64">
@@ -60,6 +63,7 @@ export default function Movie({ data }) {
                         {data.movie.age}
                       </span>
                     </div>
+                    <Link to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
                     <Button
                       rounded="full"
                       size="small"
@@ -67,10 +71,12 @@ export default function Movie({ data }) {
                     >
                       Watch
                     </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
+            <Link className="w-full" to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
             <Button
               rounded="full"
               size="medium"
@@ -78,6 +84,7 @@ export default function Movie({ data }) {
             >
               Watch
             </Button>
+            </Link>
           </div>
           <p className="relative px-4 text-primary-gray bottom-40">
             {data.movie.description.replace(/^<div>|<\/div>$/g, "")}

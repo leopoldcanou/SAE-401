@@ -31,6 +31,5 @@ export default async function getUser() {
         mode: 'cors', // Mode de requête
     });
     let answer = await data.json();
-    console.log(answer);
     return answer;
 }
