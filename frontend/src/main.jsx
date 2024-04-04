@@ -13,21 +13,31 @@ import MoviesCategory, {
   loader as moviescategoryLoader,
 } from "./routes/moviescategory.jsx";
 import MovieTrailer, { movietrailerLoader } from "./routes/trailer.jsx";
-import ErrorPage from "./components/ErrorPage/index.jsx";
 import getUser from "./lib/loaders.js";
 import { redirect } from "react-router-dom";
+import Profile from "./routes/profile.jsx";
+import { profileLoader } from "./routes/profile.jsx";
 
 replaceSpacesWithDashesInURL();
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <ErrorPage />,
     element: <Root />,
-
     children: [
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+        loader: async () => {
+          const user = await getUser();
+          if (!user) {
+            return redirect("http://localhost:8080/login");
+          }
+          return profileLoader();
+        },
       },
       {
         path: "/movie/:name",

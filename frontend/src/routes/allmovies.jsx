@@ -1,4 +1,5 @@
 import Carousel from "../components/Carousel";
+import Footer from "../components/Footer";
 
 export default function Movies() {
 
@@ -10,6 +11,7 @@ export default function Movies() {
     <Carousel name="Action" category="Action"/>
     <Carousel name="Thriller" category="Thriller"/>
     <Carousel name="Drama" category="Drama"/>
+    <Footer />
     </>
   );
 }

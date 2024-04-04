@@ -12,6 +12,8 @@ use App\Entity\Category;
 use App\Entity\Movie;
 use App\Entity\User;
 use App\Entity\Featured;
+use App\Entity\Watchlist;
+
 
 class DashboardController extends AbstractDashboardController
 {
@@ -52,6 +54,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Movie', 'fas fa-list', Movie::class);
         yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Featured', 'fas fa-list', Featured::class);
+        yield MenuItem::linkToCrud('Watchlists', 'fas fa-list', Watchlist::class);
+
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
 }

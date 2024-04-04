@@ -8,11 +8,13 @@ export default {
     extend: {
       colors: {
         primary: {
-          background: '#171717',
-          yellow: '#D87B00',
-          black: '#000000',
-          white: '#FFFFFF',
-          gray: '#9C9C9C',
+          background: "hsl(var(--color-background) /<alpha-value>)",
+          yellow: "hsl(var(--color-yellow) /<alpha-value>)",
+          gray: "hsl(var(--color-gray) /<alpha-value>)",
+          lightgray: "hsl(var(--color-light-gray) /<alpha-value>)",
+          foreground: "hsl(var(--color-white) /<alpha-value>)",
+          black: "hsl(var(--color-black) /<alpha-value>)",
+          green: "hsl(var(--color-green) /<alpha-value>)",
         },
       },
       fontFamily: {

@@ -24,8 +24,8 @@ export default function MoviesCategoryPage({ category }) {
   }, [category]); // <-- Add category here to prevent infinite re-fetching
 
   return (
-    <div className="p-4 mt-16 text-white bg-black">
-      <h2 className="mb-4 text-2xl">{category.category} Movies</h2>
+    <div className="p-4 mt-16 bg-primary-background text-primary-foreground">
+      <h2 className="mb-4 text-2xl font-bold font-roboto">{category.category} Movies</h2>
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {movies.map((movie, index) => (
           <div key={index} className="rounded-md ">

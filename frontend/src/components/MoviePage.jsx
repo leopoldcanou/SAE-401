@@ -1,3 +1,4 @@
+import { addWatchlist } from "../lib/loaders";
 import Button from "./Button";
 import Carousel from "./Carousel";
 import { Link } from "react-router-dom";
@@ -16,8 +17,8 @@ export default function Movie({ data }) {
             <div className="absolute inset-0 bg-gradient-to-t from-primary-background via-transparent"></div>
           </div>
           <div className="absolute inset-0 flex items-center justify-center">
-          <Link to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
-            <button className="flex items-center justify-center w-20 h-20 bg-opacity-75 rounded-full backdrop-blur-lg">
+          <Link onClick={() => addWatchlist(data.movie.id)} to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
+          <button className="flex items-center justify-center w-20 h-20 bg-opacity-75 rounded-full backdrop-blur-lg">
               <svg
                 className="w-12 h-12 text-white fill-primary-white"
                 viewBox="0 0 24 24"
@@ -63,7 +64,7 @@ export default function Movie({ data }) {
                         {data.movie.age}
                       </span>
                     </div>
-                    <Link to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
+                    <Link onClick={() => addWatchlist(data.movie.id)} to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
                     <Button
                       rounded="full"
                       size="small"
@@ -76,7 +77,7 @@ export default function Movie({ data }) {
                 </div>
               </div>
             </div>
-            <Link className="w-full" to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
+            <Link onClick={() => addWatchlist(data.movie.id)} className="w-full" to={`/movie/trailer/${data.movie.name.replace(/\s+/g, "-").toLowerCase()}`}>
             <Button
               rounded="full"
               size="medium"

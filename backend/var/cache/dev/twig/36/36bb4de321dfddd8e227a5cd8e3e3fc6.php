@@ -57,7 +57,9 @@ class __TwigTemplate_4f3a82fe863f1b3760ac10a14a11b911 extends Template
         // line 7
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 9
-        echo "
+        echo "        <link href=\"";
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("./style.css"), "html", null, true);
+        echo "\" rel=\"stylesheet\">
         ";
         // line 10
         $this->displayBlock('javascripts', $context, $blocks);
@@ -167,9 +169,17 @@ class __TwigTemplate_4f3a82fe863f1b3760ac10a14a11b911 extends Template
     /**
      * @codeCoverageIgnore
      */
+    public function isTraitable()
+    {
+        return false;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     */
     public function getDebugInfo()
     {
-        return array (  142 => 14,  132 => 11,  122 => 10,  112 => 8,  102 => 7,  83 => 5,  71 => 15,  69 => 14,  65 => 12,  63 => 10,  60 => 9,  58 => 7,  53 => 5,  47 => 1,);
+        return array (  144 => 14,  134 => 11,  124 => 10,  114 => 8,  104 => 7,  85 => 5,  73 => 15,  71 => 14,  67 => 12,  65 => 10,  60 => 9,  58 => 7,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -182,7 +192,7 @@ class __TwigTemplate_4f3a82fe863f1b3760ac10a14a11b911 extends Template
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>\">
         {% block stylesheets %}
         {% endblock %}
-
+        <link href=\"{{ asset('./style.css') }}\" rel=\"stylesheet\">
         {% block javascripts %}
         {% endblock %}
     </head>

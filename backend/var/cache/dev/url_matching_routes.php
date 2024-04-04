@@ -18,6 +18,8 @@ return [
         '/api' => [[['_route' => 'app_api', '_controller' => 'App\\Controller\\ApiController::index'], null, null, null, false, false, null]],
         '/api/featured' => [[['_route' => 'app_api_featured', '_controller' => 'App\\Controller\\ApiController::readFeatured'], null, null, null, false, false, null]],
         '/user' => [[['_route' => 'app_api_user', '_controller' => 'App\\Controller\\ApiController::getConnectedUser'], null, null, null, false, false, null]],
+        '/api/watchlist' => [[['_route' => 'app_api_watchlist', '_controller' => 'App\\Controller\\ApiController::userWatchlist'], null, null, null, false, false, null]],
+        '/api/watchlist/clear' => [[['_route' => 'app_api_watchlist_clear', '_controller' => 'App\\Controller\\ApiController::clearWatchlist'], null, null, null, false, false, null]],
         '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
         '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null]],
         '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
@@ -46,6 +48,15 @@ return [
                     .'|movie/([^/]++)(*:224)'
                     .'|category/([^/]++)(*:249)'
                     .'|search/([^/]++)(*:272)'
+                    .'|watchlist/(?'
+                        .'|add/([^/]++)(*:305)'
+                        .'|remove/([^/]++)(*:328)'
+                    .')'
+                    .'|user/change\\-(?'
+                        .'|username/([^/]++)(*:370)'
+                        .'|firstname/([^/]++)(*:396)'
+                        .'|lastname/([^/]++)(*:421)'
+                    .')'
                 .')'
             .')/?$}sDu',
     ],
@@ -60,8 +71,13 @@ return [
         191 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         224 => [[['_route' => 'app_api_movie', '_controller' => 'App\\Controller\\ApiController::readMovie'], ['name'], null, null, false, true, null]],
         249 => [[['_route' => 'app_api_category', '_controller' => 'App\\Controller\\ApiController::readCategory'], ['name'], null, null, false, true, null]],
-        272 => [
-            [['_route' => 'api_search_movies', '_controller' => 'App\\Controller\\ApiController::searchMovies'], ['name'], null, null, false, true, null],
+        272 => [[['_route' => 'api_search_movies', '_controller' => 'App\\Controller\\ApiController::searchMovies'], ['name'], null, null, false, true, null]],
+        305 => [[['_route' => 'app_api_watchlist_add', '_controller' => 'App\\Controller\\ApiController::addMovieToWatchlist'], ['movieId'], null, null, false, true, null]],
+        328 => [[['_route' => 'app_api_watchlist_remove', '_controller' => 'App\\Controller\\ApiController::removeMovieFromWatchlist'], ['movieId'], null, null, false, true, null]],
+        370 => [[['_route' => 'app_api_user_change_username', '_controller' => 'App\\Controller\\ApiController::changeUsername'], ['username'], null, null, false, true, null]],
+        396 => [[['_route' => 'app_api_user_change_firstname', '_controller' => 'App\\Controller\\ApiController::changeFirstName'], ['firstName'], null, null, false, true, null]],
+        421 => [
+            [['_route' => 'app_api_user_change_lastname', '_controller' => 'App\\Controller\\ApiController::changeLastName'], ['lastName'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

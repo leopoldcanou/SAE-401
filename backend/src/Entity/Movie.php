@@ -16,42 +16,42 @@ class Movie
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['json_category'])]
+    #[Groups(['json_category', 'json_watchlist'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'movies')]
     private Collection $category;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $description = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $duration = null;
 
     #[ORM\Column(length: 4)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $year = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $rating = null;
 
     #[ORM\Column(length: 10)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $age = null;
 
     #[ORM\Column(length: 512)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $img = null;
 
     #[ORM\Column(length: 512)]
-    #[Groups(['json_category', 'json_featured'])] // Ajoutez 'json_featured' au groupe
+    #[Groups(['json_category', 'json_featured', 'json_watchlist'])] // Ajoutez 'json_featured' au groupe
     private ?string $wideimg = null;
 
     #[ORM\OneToMany(targetEntity: Featured::class, mappedBy: 'movie')]
@@ -60,10 +60,14 @@ class Movie
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $video = null;
 
+    #[ORM\OneToMany(targetEntity: Watchlist::class, mappedBy: 'movie')]
+    private Collection $watchlists;
+
     public function __construct()
     {
         $this->category = new ArrayCollection();
         $this->featureds = new ArrayCollection();
+        $this->watchlists = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -241,6 +245,36 @@ class Movie
         public function setVideo(?string $video): static
         {
             $this->video = $video;
+
+            return $this;
+        }
+
+        /**
+         * @return Collection<int, Watchlist>
+         */
+        public function getWatchlists(): Collection
+        {
+            return $this->watchlists;
+        }
+
+        public function addWatchlist(Watchlist $watchlist): static
+        {
+            if (!$this->watchlists->contains($watchlist)) {
+                $this->watchlists->add($watchlist);
+                $watchlist->setMovie($this);
+            }
+
+            return $this;
+        }
+
+        public function removeWatchlist(Watchlist $watchlist): static
+        {
+            if ($this->watchlists->removeElement($watchlist)) {
+                // set the owning side to null (unless already changed)
+                if ($watchlist->getMovie() === $this) {
+                    $watchlist->setMovie(null);
+                }
+            }
 
             return $this;
         }
