@@ -112,3 +112,11 @@ export async function changeLastname(lastname) {
   console.log(answer);
   return answer;
 }
+
+export async function logoutUser() {
+  await fetch('http://localhost:8080/logout', {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+}

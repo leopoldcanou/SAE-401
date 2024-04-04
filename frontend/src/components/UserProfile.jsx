@@ -4,10 +4,11 @@ import {
   changeFirstname,
   changeLastname,
   clearWatchlist,
+  logoutUser,
 } from "../lib/loaders";
+import { useNavigate } from "react-router-dom";
 
 export default function UserProfile({ user, watchlist }) {
-  console.log(watchlist);
   // États pour les valeurs des inputs
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -53,13 +54,36 @@ export default function UserProfile({ user, watchlist }) {
     const response = await clearWatchlist();
     console.log("Réponse de la suppression de la watchlist: ", response);
     window.location.reload(); // Rafraîchir la page après la suppression
-  }
+  };
+
+
+
+  const navigate = useNavigate(); // Instanciation de useNavigate
+
+  const logoutcurrentUser = async () => {
+    try {
+      const response = await logoutUser(); // Supposons que cette fonction réalise la déconnexion
+      console.log(response); // Affiche la réponse du serveur, facultatif
+      navigate('/home'); // Redirection vers /home après la déconnexion
+    } catch (error) {
+      console.error('Erreur lors de la déconnexion :', error);
+    }
+  };
 
   return (
     <div className="mx-4 mt-20">
-      <h2 className="text-3xl text-bold font-roboto text-primary-foreground">
-        User Profile
-      </h2>
+      <div className="flex flex-row justify-between">
+        <h2 className="text-3xl text-bold font-roboto text-primary-foreground">
+          User Profile
+        </h2>
+        <button
+          onClick={logoutcurrentUser}
+          className="px-4 py-2 ml-2 rounded-md bg-primary-yellow text-primary-black"
+        >
+          Logout
+        </button>
+      </div>
+
       {/* Username */}
       <div className="flex flex-col px-2 py-3 my-4 rounded-md bg-primary-lightgray">
         <p className="text-base font-roboto text-primary-foreground">
@@ -142,11 +166,11 @@ export default function UserProfile({ user, watchlist }) {
             Watchlist
           </h3>
           <button
-              onClick={clearWatchlistUser}
-              className="px-4 py-2 ml-2 rounded-md bg-primary-yellow text-primary-black"
-            >
-              Clear
-            </button>
+            onClick={clearWatchlistUser}
+            className="px-4 py-2 ml-2 rounded-md bg-primary-yellow text-primary-black"
+          >
+            Clear
+          </button>
         </div>
         <div className="mt-4">
           {watchlist.map(({ movie }) => (
