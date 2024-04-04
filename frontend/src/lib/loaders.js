@@ -33,3 +33,82 @@ export default async function getUser() {
     let answer = await data.json();
     return answer;
 }
+
+
+export async function getWatchlist() {
+    let data = await fetch('http://localhost:8080/api/watchlist', {
+        method: 'GET', // Méthode de la requête
+        credentials: 'include', // Inclure les cookies
+        mode: 'cors', // Mode de requête
+    });
+    let answer = await data.json();
+    console.log(answer);
+    return answer;
+}
+
+
+export async function addWatchlist(id) {
+  let data = await fetch(`http://localhost:8080/api/watchlist/add/${id}`, {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+  let answer = await data.json();
+  console.log(answer);
+  return answer;
+}
+
+export async function removeWatchlist(id) {
+  let data = await fetch(`http://localhost:8080/api/watchlist/remove/${id}`, {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+  let answer = await data.json();
+  console.log(answer);
+  return answer;
+}
+
+export async function clearWatchlist() {
+  let data = await fetch('http://localhost:8080/api/watchlist/clear', {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+  let answer = await data.json();
+  console.log(answer);
+  return answer;
+}
+
+export async function changeUsername(username) {
+  let data = await fetch(`http://localhost:8080/api/user/change-username/${username}`, {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+  let answer = await data.json();
+  console.log(answer);
+  return answer;
+}
+
+export async function changeFirstname(firstname) {
+  let data = await fetch(`http://localhost:8080/api/user/change-firstname/${firstname}`, {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+  let answer = await data.json();
+  console.log(answer);
+  return answer;
+}
+
+export async function changeLastname(lastname) {
+  let data = await fetch(`http://localhost:8080/api/user/change-lastname/${lastname}`, {
+    method: 'GET', // Méthode de la requête
+    credentials: 'include', // Inclure les cookies
+    mode: 'cors', // Mode de requête
+  });
+  let answer = await data.json();
+  console.log(answer);
+  return answer;
+}

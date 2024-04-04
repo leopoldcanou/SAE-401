@@ -4,8 +4,8 @@ export default function SearchMovie({ movies }) {
   if (!movies || movies.length === 0) {
     return (
       <div className="flex justify-center pt-6 mb-96">
-        <p className="text-lg font-bold font-roboto text-primary-white">
-          Aucun film trouvé.
+        <p className="text-lg font-bold font-roboto text-primary-foreground">
+          No films found.
         </p>
       </div>
     );
@@ -17,7 +17,7 @@ export default function SearchMovie({ movies }) {
         {movies.map((movie, index) => (
           <div
             key={index}
-            className="flex flex-row gap-4 rounded-md bg-[#1D1D1D]"
+            className="flex flex-row gap-4 rounded-md bg-primary-lightgray"
           >
             <Card
               className="w-32"
@@ -26,8 +26,20 @@ export default function SearchMovie({ movies }) {
               href={`/movie/${movie.name.replace(/\s+/g, "-").toLowerCase()}`}
             />
             <div className="flex flex-col mt-4">
-              <h3 className="text-lg font-bold text-[#E5E5E5] font-roboto">{movie.name}</h3>
-              <div className="flex flex-row"><p className="font-roboto text-[#E5E5E5] text-base">{movie.year}</p><span className="text-base px-1 text-[#E5E5E5]">•</span><p className="text-base font-roboto text-[#E5E5E5]">{movie.duration}</p></div>
+              <h3 className="text-lg font-bold font-roboto text-primary-foreground">
+                {movie.name}
+              </h3>
+              <div className="flex flex-row">
+                <p className="text-base font-roboto text-primary-foreground">
+                  {movie.year}
+                </p>
+                <span className="px-1 text-base text-primary-foreground">
+                  •
+                </span>
+                <p className="text-base font-roboto text-primary-foreground">
+                  {movie.duration}
+                </p>
+              </div>
             </div>
           </div>
         ))}

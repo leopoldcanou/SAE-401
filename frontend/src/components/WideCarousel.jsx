@@ -45,10 +45,10 @@ export default function WideCarousel() {
   return (
     <div className="relative pb-6 bg-primary-background">
       <div className="flex flex-col px-5 pb-6">
-        <h3 className="text-xl font-bold text-center font-roboto text-primary-white md:text-3xl lg:text-4xl">
+        <h3 className="text-xl font-bold text-center font-roboto text-primary-foreground md:text-3xl lg:text-4xl">
           Choose From popular titles
         </h3>
-        <p className="text-xs text-center font-roboto text-primary-white md:text-lg lg:text-xl">
+        <p className="text-xs text-center font-roboto text-primary-foreground md:text-lg lg:text-xl">
           Movies or series? Don&apos;t worry, we have something for everyone!
         </p>
       </div>

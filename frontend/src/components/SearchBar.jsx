@@ -17,7 +17,7 @@ export default function SearchBar({ onSearch }) {
 
     return (
         <div className="flex items-center justify-center w-full pt-24">
-            <div className="flex flex-row items-center relative rounded-lg bg-[#2E2E2E] w-full mx-4 h-full">
+            <div className="relative flex flex-row items-center w-full h-full mx-4 rounded-lg bg-primary-lightgray">
                 <SearchIcon className="w-6 h-6 ml-4 text-primary-gray" />
                 <input
                     type="text"
@@ -25,7 +25,7 @@ export default function SearchBar({ onSearch }) {
                     onChange={handleChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
-                    className="w-full h-12 px-4 py-2 text-white duration-150 ease-in-out bg-transparent rounded-md outline-none text-md"
+                    className="w-full h-12 px-4 py-2 duration-150 ease-in-out bg-transparent rounded-md outline-none text-primary-foreground text-md"
                 />
                 {/* Simulation du placeholder */}
                 <span className={` text-primary-gray absolute left-0 ml-12 py-2 pointer-events-none duration-150 ease-in-out transform ${isFocused ? 'translate-y-[-1rem] text-[10px]' : 'translate-y-0 text-md'}`}>

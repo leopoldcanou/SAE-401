@@ -44,14 +44,14 @@ export default function Carousel({ name, category }) {
   return (
     <>
       <div className="flex flex-row justify-between px-4 pt-6 pb-2">
-        <h3 className="text-xl font-bold font-roboto text-primary-white">
+        <h3 className="text-xl font-bold font-roboto text-primary-foreground">
           {name}
         </h3>
         <div className="flex flex-row items-center">
-          <Link className="flex flex-row" to={`/movies/${category}`}>
-            <p className="text-sm font-roboto text-primary-white">Show all</p>
+          <Link className="flex flex-row items-center" to={`/movies/${category}`}>
+            <p className="text-sm font-roboto text-primary-foreground">Show all</p>
             <svg
-              className="w-6 h-6 fill-primary-white"
+              className="w-6 h-6 fill-primary-foreground"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >

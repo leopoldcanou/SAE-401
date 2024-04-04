@@ -1,3 +1,4 @@
+import Footer from '../components/Footer';
 import MoviesCategoryPage from '../components/MoviesCategoryPage';
 import { defer, useLoaderData } from "react-router-dom";
 
@@ -13,6 +14,9 @@ export async function loader({ params }) {
 export default function MoviesCategory() {
     let data = useLoaderData();
     return (
+        <>
         <MoviesCategoryPage category={data}/>
+        <Footer/>
+        </>
     );
     }

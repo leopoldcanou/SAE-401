@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <>
-      <footer className="bg-black text-base text-[#9C9C9C]">
+      <footer className="text-base bg-primary-black text-primary-gray">
         <div className="px-4 py-8">
           <div className="flex flex-col gap-2 md:flex-row md:justify-between">
             <div>
@@ -24,9 +24,9 @@ export default function Footer() {
             {/* Social icons */}
             <div className="flex gap-4">
               {/* Instagram SVG */}
-              <a href="#" className="hover:text-gray-400">
+              <a href="#">
                 <svg
-                  className="fill-[#9C9C9C]"
+                  className="fill-primary-gray"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -36,9 +36,9 @@ export default function Footer() {
                 </svg>
               </a>
               {/* Facebook SVG */}
-              <a href="#" className="hover:text-gray-400">
+              <a href="#">
                 <svg
-                  className="fill-[#9C9C9C]"
+                  className="fill-primary-gray"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -48,9 +48,9 @@ export default function Footer() {
                 </svg>
               </a>
               {/* Twitter SVG */}
-              <a href="#" className="hover:text-gray-400">
+              <a href="#">
                 <svg
-                  className="fill-[#9C9C9C]"
+                  className="fill-primary-gray"
                   width="24"
                   height="24"
                   xmlns="http://www.w3.org/2000/svg"

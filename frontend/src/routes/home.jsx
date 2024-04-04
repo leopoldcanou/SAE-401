@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import WideCarousel from "../components/WideCarousel";
 import { Outlet } from "react-router-dom";
 
-
 export default function Home() {
   return (
     <>

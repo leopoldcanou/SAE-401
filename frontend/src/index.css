@@ -2,3 +2,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    :root {
+        /* Primitive Tokens */
+        --color-background: 0 0% 9%;
+        --color-yellow: 34 100% 42%;
+        --color-gray: 0 0% 61%;
+        --color-light-gray: 0 0% 18%;
+        --color-white: 0 0% 100%;
+        --color-black: 0 0% 0%;
+        --color-green: 100 36% 51%;
+        
+    }
+}
