@@ -87,7 +87,7 @@ export default function UserProfile({ user, watchlist }) {
       {/* Username */}
       <div className="flex flex-col px-2 py-3 my-4 rounded-md bg-primary-lightgray">
         <p className="text-base font-roboto text-primary-foreground">
-          Username actuel: {user.username}
+          Username  : {user.username}
         </p>
         <div className="flex items-center justify-center w-full">
           <div className="relative flex flex-row items-center w-full h-full rounded-lg bg-primary-lightgray">
@@ -112,7 +112,7 @@ export default function UserProfile({ user, watchlist }) {
       {/* First Name */}
       <div className="flex flex-col px-2 py-3 my-4 rounded-md bg-primary-lightgray">
         <p className="text-base font-roboto text-primary-foreground">
-          Prénom actuel: {user.firstName}
+          Prénom  : {user.firstName}
         </p>
         <div className="flex items-center justify-center w-full">
           <div className="relative flex flex-row items-center w-full h-full rounded-lg bg-primary-lightgray">
@@ -137,7 +137,7 @@ export default function UserProfile({ user, watchlist }) {
       {/* Last Name */}
       <div className="flex flex-col px-2 py-3 my-4 rounded-md bg-primary-lightgray">
         <p className="text-base font-roboto text-primary-foreground">
-          Nom actuel: {user.lastName}
+          Nom  : {user.lastName}
         </p>
         <div className="flex items-center justify-center w-full">
           <div className="relative flex flex-row items-center w-full h-full rounded-lg bg-primary-lightgray">

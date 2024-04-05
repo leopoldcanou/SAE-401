@@ -19,3 +19,4 @@ backend/!var/sessions/.gitkeep
 backend//var/log/*
 backend/!var/log/.gitkeep
 
+/backend/var

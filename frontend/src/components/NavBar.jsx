@@ -1,6 +1,5 @@
 import { Disclosure } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/solid';
-import Logo from '/img/anytime.png';
 import { Link } from 'react-router-dom';
 
 const navigationLinks = [
@@ -18,7 +17,7 @@ const Navbar = () => {
                         <div className="flex items-center justify-between h-16">
                             <div>
                                 <Link to="/home">
-                                    <img src={Logo} alt="Anytime Logo" className="align-middle w-36 aspect-auto" />
+                                    <img src="/img/anytime.png" alt="Anytime Logo" className="align-middle w-36 aspect-auto" />
                                 </Link>
                             </div>
                             <div className="hidden md:block">
