@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <div className="relative">
             <div className="relative inset-0 ">
-                <div className="h-96 md:h-[60rem] lg:h-[50rem] w-full  bg-[url('/img/HEADER_BG.jpg')] lg:bg-[url('/img/HEADER_BG_LG.jpg')] bg-cover  bg-top"></div>
+                <div className="h-96 md:h-[60rem] lg:h-[50rem] w-full  bg-[url('/img/HEADER_BG.webp')] lg:bg-[url('/img/HEADER_BG_LG.webp')] bg-cover  bg-top"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-primary-background via-transparent"></div>
             </div>
             <div className="relative md:absolute inset-0 flex flex-col items-center justify-center text-primary-foreground h-[24rem] -top-12 md:top-[24rem] md:px-20">
